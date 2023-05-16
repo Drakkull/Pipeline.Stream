@@ -28,14 +28,22 @@ public class Program {
                 list.add(new Product(fields[0], Double.parseDouble(fields[1])));
                 line = br.readLine();
 
-
-
             }
+            //Agora usando pipeline/strem na lista criada para achar o valor médio
+
+            double avg = list.stream()
+                    .map( p-> p.getPrice())
+                    .reduce(0.0, (x,y) -> x + y ) / list.size();
+
+            System.out.println("Average Price: " + String.format("%.2f",avg));
 
 
-            }
-            catch (IOException e){
-                System.out.println("Error message: " + e.getMessage());
+
+
+        }catch (IOException e){
+            System.out.println("Error message: " + e.getMessage());
+
+
         }
 
         sc.close();
